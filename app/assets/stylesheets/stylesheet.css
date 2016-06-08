@@ -1,0 +1,27 @@
+.nav-bar {
+  background-color: #55eff4;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.about-title {
+  text-align: center;
+}
+
+.head-shot {
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 25%;
+  margin: 25px;
+}
+
+.thumb-nail {
+  width: 100%;
+}
+
+.post {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px;
+}
