@@ -1,0 +1,7 @@
+<% if @posts %>
+  <% @posts.each do |post| %>
+    <%= link_to post.title, post_path(post) %>
+    <%= post.body.truncate(100) %>
+    <hr>
+  <% end %>
+<% end %>

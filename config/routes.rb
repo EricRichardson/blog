@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "home#index"
   resources :posts
+  get "/posts/search" => "posts#search"
+  post "/posts/search" => "posts#search", as: :search
   resources :comments
   get "/about" => "home#about"
 

@@ -31,4 +31,19 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+
+  def update
+    @post = Post.find params[:id]
+    post_params = params.require(:post).permit(:title, :body)
+    if @post.update post_params
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end  
+  end
+
+  def search
+    term = params[:search]
+    @posts = Post.where("body ILIKE ? OR title ILIKE ?", "%#{ term }%", "%#{ term }%")
+  end
 end
