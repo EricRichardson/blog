@@ -1,20 +1,10 @@
 <h2><%= link_to "Make a New Post", new_post_path %></h2>
 <p>
   Search:
-  <%= form_tag search_path, method: 'post' do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", name: nil %>
-  <% end %>
+  <%= render "shared/search_bar" %>
 </p>
 <div class="row">
   <% @posts.each do |post|%>
-    <div class="col s12 m6 l4">
-      <div class="post">
-        <h2><%= link_to post.title, post_path(post) %></h2>
-        <div class="post-body">
-          <%= post.body %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "shared/display_post", locals: { post: post} %>
     <% end %>
 </div>

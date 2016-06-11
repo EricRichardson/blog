@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    post_params = params.require(:post).permit(:title, :body)
     @post = Post.new post_params
     if @post.save
       redirect_to post_path @post
@@ -15,35 +14,47 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find params[:id]
+    @post = post
   end
 
   def index
-    @posts = Post.order(created_at: :desc)
+    #@posts = Post.order(created_at: :desc)
+    @all_posts = Post.count
+    current_page = params[:page]
+    @posts = Post.paginate(current_page)
   end
 
   def edit
-    @post = Post.find params[:id]
+    @post = post
   end
 
   def destroy
-    @post = Post.find params[:id]
+    @post = post
     @post.destroy
     redirect_to posts_path
   end
 
   def update
-    @post = Post.find params[:id]
-    post_params = params.require(:post).permit(:title, :body)
+    @post = post
     if @post.update post_params
       redirect_to post_path(@post)
     else
       render :edit
-    end  
+    end
   end
 
   def search
     term = params[:search]
-    @posts = Post.where("body ILIKE ? OR title ILIKE ?", "%#{ term }%", "%#{ term }%")
+    @posts = Post.search(term)
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
+
+  def post
+    Post.find params[:id]
   end
 end
