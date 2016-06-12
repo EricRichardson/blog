@@ -22,6 +22,28 @@
 
 .post {
   border: 1px solid black;
+  color: black;
   border-radius: 5px;
   margin: 10px;
+  padding: 15px;
+  height: 250px;
+}
+
+.post:hover {
+  background-color: #55eff4;
+  box-shadow: 5px 5px 5px darkgrey;
+  color: white;
+}
+
+.post-title {
+  font-size: 1.2em;
+}
+
+ .post-link:hover {
+  color: green;
+}
+
+.search {
+  width: 25%;
+  display: inline-block;
 }

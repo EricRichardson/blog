@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   def index
     #@posts = Post.order(created_at: :desc)
     @all_posts = Post.count
-    current_page = params[:page]
+    current_page = params[:page] || 1
     @posts = Post.paginate(current_page)
   end
 

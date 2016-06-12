@@ -1,8 +1,10 @@
+<a href="<%= post_path(post) %>" class="post-link">
 <div class="col s12 m6 l4">
   <div class="post">
-    <h2><%= link_to post.title, post_path(post) %></h2>
+    <h2 class="post-title"><%= post.title %></h2>
     <div class="post-body">
       <%= post.body.truncate(100) %>
     </div>
   </div>
 </div>
+</a>

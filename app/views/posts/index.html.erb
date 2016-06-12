@@ -1,8 +1,4 @@
 <h2><%= link_to "Make a New Post", new_post_path %></h2>
-<p>
-  Search:
-  <%= render "shared/search_bar" %>
-</p>
 
 <% (0..(@all_posts)/10).each do |page_num| %>
   <% page_num += 1 %>

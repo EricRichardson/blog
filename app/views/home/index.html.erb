@@ -1,8 +1,5 @@
 <h2><%= link_to "Make a New Post", new_post_path %></h2>
-<p>
-  Search:
-  <%= render "shared/search_bar" %>
-</p>
+
 <div class="row">
   <% @posts.each do |post|%>
     <%= render partial: "shared/display_post", locals: { post: post} %>
