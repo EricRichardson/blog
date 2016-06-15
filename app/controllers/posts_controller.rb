@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
   def new
     @post = Post.new
   end
@@ -13,34 +13,29 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-    @post = post
-  end
-
   def index
-    #@posts = Post.order(created_at: :desc)
     @all_posts = Post.count
     current_page = params[:page] || 1
     @posts = Post.paginate(current_page)
   end
 
-  def edit
-    @post = post
+  def show
   end
 
-  def destroy
-    @post = post
-    @post.destroy
-    redirect_to posts_path
+  def edit
   end
 
   def update
-    @post = post
     if @post.update post_params
       redirect_to post_path(@post)
     else
       render :edit
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to posts_path
   end
 
   def search
@@ -54,7 +49,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body)
   end
 
-  def post
-    Post.find params[:id]
+  def find_post
+    @post = Post.find params[:id]
   end
 end
