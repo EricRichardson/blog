@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   get "/posts/page/:page" => "posts#index", as: :page
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
+
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
