@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :find_post, only: [:create, :destroy, :edit, :update]
   before_action :find_comment, only: [:destroy, :edit, :update]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def new
     @comment = Comment.new
@@ -8,6 +9,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new comment_params
+    @comment.user = current_user
+    @comment.post = @post
     if @comment.save
       redirect_to post_path @post
     else
@@ -40,6 +43,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+    def authenticate_user!
+      redirect_to new_session_path, notice: "You have to be signed in" unless user_signed_in?
+    end
 
     def find_post
       @post = Post.find_by_id params[:post_id]

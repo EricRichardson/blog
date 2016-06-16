@@ -1,3 +1,23 @@
+body {
+  padding-bottom: 50px;
+}
+
+.flash-notice {
+  background-color: green;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.flash-alert {
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
 .nav-bar {
   background-color: #114411;
   padding: 10px;
