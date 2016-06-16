@@ -1,5 +1,5 @@
 .nav-bar {
-  background-color: #55eff4;
+  background-color: #114411;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
@@ -30,7 +30,7 @@
 }
 
 .post:hover {
-  background-color: #55eff4;
+  background-color: #114411;
   box-shadow: 5px 5px 5px darkgrey;
   color: white;
 }

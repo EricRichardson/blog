@@ -7,5 +7,9 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
+  <div>
+    <%= f.label :category %>
+    <%= f.collection_select :category_id, Category.all, :id, :title %>
+  </div>
   <%= f.submit %>
 <% end %>
