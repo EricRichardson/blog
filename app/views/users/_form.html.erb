@@ -11,7 +11,9 @@
     <%= f.label :email %>
     <%= f.email_field :email %>
   </div>
-  <% unless user_signed_in? %>
+  <% if user_signed_in? %>
+    <%= link_to "Change password", change_password_path %>
+  <% else %>
     <div>
       <%= f.label :password %>
       <%= f.password_field :password %>
