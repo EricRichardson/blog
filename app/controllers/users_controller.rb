@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
+      sign_in()
       redirect_to root_path, notice: "Account Made!"
     else
       render :new
