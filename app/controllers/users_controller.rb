@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def change_password
   end
-
+  # The flash message could be more descriptive
   def update_password
     if @user.authenticate(params[:password]) && params[:new_password] == params[:new_password_confirmation]
       @user.update password: params[:new_password]
