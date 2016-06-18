@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      sign_in()
+      sign_in(@user)
       redirect_to root_path, notice: "Account Made!"
     else
       render :new
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
   # The flash message could be more descriptive
   def update_password
-    if @user.authenticate(params[:password]) && params[:new_password] == params[:new_password_confirmation]
+    if @user.authenticate params[:password] && params[:new_password] == params[:new_password_confirmation]
       @user.update password: params[:new_password]
       redirect_to root_path, notice: "Password changed"
     else
