@@ -5,8 +5,17 @@ RSpec.describe PostsController, type: :controller do
     Post.create(FactoryGirl.attributes_for(:post))
   end
 
+  def create_user
+    User.create(FactoryGirl.attributes_for(:user))
+  end
+
+  def log_in
+    user = User.first
+    request.session[:user_id] = user.id
+  end
+
   describe "#new" do
-    before {get :new}
+    before {create_user; log_in; get :new}
 
     it "sets an instance variable to a new post" do
       expect(assigns(:post)).to be_a_new(Post)
@@ -18,6 +27,8 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "#create" do
+    before {create_user; log_in}
+
     context "with valid params" do
       def valid_post
         post :create, post: FactoryGirl.attributes_for(:post)
@@ -88,6 +99,8 @@ RSpec.describe PostsController, type: :controller do
 
   describe "#edit" do
     before do
+      create_user
+      log_in
       create_post
       get :edit, id: Post.last.id
     end
@@ -102,6 +115,10 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "#update" do
+    before do
+      create_user
+      log_in
+    end
 
     def post
       @post ||= Post.create FactoryGirl.attributes_for(:post)
@@ -133,7 +150,12 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "#destroy" do
-    before {create_post}
+    before do
+      create_user
+      log_in
+      create_post
+    end
+
     it "should destroy the post" do
       count_before = Post.count
       delete :destroy, id: Post.last.id
