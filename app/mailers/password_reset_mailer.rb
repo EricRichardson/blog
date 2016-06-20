@@ -1,5 +1,5 @@
 class PasswordResetMailer < ApplicationMailer
-  default from: 'ponytester123@gmail.com'
+  default from: 'driftingeric@gmail.com'
 
   def send_reset (user, url)
     @user = user

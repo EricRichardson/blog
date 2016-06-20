@@ -24,7 +24,7 @@ class PasswordResetsController < ApplicationController
   def update
     user = User.find params[:id]
     if user.forgot_token == params[:token] && params[:new_password] == params[:new_password_confirmation]
-      user.update password: params[:new_password]
+      user.update password: params[:new_password], failed_attempts: 0
       redirect_to root_path, notice: "Password reset!"
     else
       redirect_to root_path, notice: "Invalid reset token"
