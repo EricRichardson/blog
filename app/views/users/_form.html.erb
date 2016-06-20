@@ -25,4 +25,5 @@
   <% end %>
   <% edit_message = "Update info" if user_signed_in? %>
   <%= f.submit edit_message ||"Make Account" %>
+  <%= link_to "Forgot password?", new_password_reset_path %>
 <% end %>
