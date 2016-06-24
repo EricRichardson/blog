@@ -9,3 +9,7 @@ end
               body: Faker::ChuckNorris.fact + Faker::Hipster.paragraph(3),
               category: Category.all.sample
 end
+
+['Hipster', 'ChuckNorris', 'Misc', 'Awesome' ].each do |t|
+  Tag.create(title: t)
+end

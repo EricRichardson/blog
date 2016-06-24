@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.post = @post
     if @comment.save
-      CommentMailer.notify_comment(@comment).deliver_now unless @comment.user == current_user
+      CommentMailer.notify_comment(@comment).deliver_now unless @post.user == current_user
       redirect_to post_path @post
     else
       render :new

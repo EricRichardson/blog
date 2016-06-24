@@ -4,6 +4,7 @@ gem 'delayed_job_active_record'
 gem 'cancancan'
 gem 'faker', github: 'stympy/faker'
 gem 'figaro'
+gem 'hirb'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

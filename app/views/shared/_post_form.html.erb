@@ -8,6 +8,10 @@
     <%= f.text_area :body %>
   </div>
   <div>
+    <%= f.label :tags %>
+    <%= f.collection_check_boxes(:tag_ids, Tag.order(:title), :id, :title) %>
+  </div>
+  <div>
     <%= f.label :category %>
     <%= f.collection_select :category_id, Category.all, :id, :title %>
   </div>

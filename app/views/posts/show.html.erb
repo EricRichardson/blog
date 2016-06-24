@@ -3,6 +3,9 @@
   <%= "Created br: " + @post.user.full_name if @post.user %><br>
   <%= @post.body %>
 </div>
+<div>
+  Tags: <%= @post.tags.map { |t| t.title.capitalize }.join(', ') %><br>
+</div>
 <% if can? :manage, @post %>
   <%= link_to "Edit", edit_post_path(@post) %>
   <%= link_to "Delete", post_path(@post), method: :delete,
