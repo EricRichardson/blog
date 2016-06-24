@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'letter_opener'
+gem 'delayed_job_active_record'
 gem 'cancancan'
 gem 'faker', github: 'stympy/faker'
 gem 'figaro'

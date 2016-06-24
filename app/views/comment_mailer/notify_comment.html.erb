@@ -1,0 +1,11 @@
+<h1>Someone commented on your post: <%= @post.title %></h1>
+
+<p>
+  They wrote: <br>
+  <%= @comment.body %>
+  Read it on the block by clicking <%= link_to "here", post_url(@post) %>
+</p>
+
+<p>
+  Best regards!
+</p>

@@ -1,15 +1,17 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
   ActionMailer::Base.smtp_settings = {
- :user_name => ENV['SENDGRID_USERNAME'],
- :password => ENV['SENDGRID_PASSWORD'],
- :domain => 'https://erics-blog.herokuapp.com',
- :address => 'smtp.sendgrid.net',
- :port => 587,
- :authentication => :plain,
- :enable_starttls_auto => true
-}
+  :user_name => 'ponytester123@gmail.com',
+  :password => ENV['PONY_PASSWORD'],
+  :domain => 'gmail.com',
+  :address => 'smtp.gmail.com',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+  }
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

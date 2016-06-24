@@ -1,6 +1,6 @@
 <h2><%= link_to "Make a New Post", new_post_path %></h2>
 
-<% (0..(@all_posts)/10).each do |page_num| %>
+<% (0..(@all_posts)/12).each do |page_num| %>
   <% page_num += 1 %>
   <%= link_to page_num, page_path(page_num) %>
 <% end %>

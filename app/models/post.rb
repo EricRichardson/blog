@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
   has_many :comments, dependent: :destroy
-  
+
   validates :title, presence: true,
                     uniqueness: true
 
@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   scope :search, -> (term) { where("body ILIKE :term OR title ILIKE :term", {term: "%#{ term }%"})}
 
   def self.paginate(current_page)
-    per_page_count = 10
+    per_page_count = 12
     page_num = current_page.to_i
     order(created_at: :desc).offset(per_page_count * (page_num - 1)).limit(per_page_count)
   end
