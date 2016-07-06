@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   before_action :find_post, only: [:create, :destroy, :edit, :update]
   before_action :find_comment, only: [:destroy, :edit, :update]
   before_action :authenticate_user!, except: [:show, :index]
@@ -11,11 +12,15 @@ class CommentsController < ApplicationController
     @comment = Comment.new comment_params
     @comment.user = current_user
     @comment.post = @post
-    if @comment.save
-      CommentMailer.notify_comment(@comment).deliver_now unless @post.user == current_user
-      redirect_to post_path @post
-    else
-      render :new
+
+    respond_to do |format|
+      if @comment.save
+        CommentMailer.notify_comment(@comment).deliver_now unless @post.user == current_user
+        format.html { redirect_to post_path @post }
+        format.js { render 'new_comment' }
+      else
+        render :new
+      end
     end
   end
 
@@ -40,7 +45,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to post_path @post
+    respond_to do |format|
+      format.html { redirect_to post_path(@post) }
+      format.js { render }
+    end
   end
 
   private
@@ -54,7 +62,7 @@ class CommentsController < ApplicationController
     end
 
     def find_comment
-        @comment = Comment.find params[:id]
+      @comment = Comment.find params[:id]
     end
 
     def comment_params

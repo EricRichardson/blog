@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
+    resources :favorites, only: [:create, :destroy]
+    resources :ratings, only: [:create, :update]
   end
   get "/posts/search" => "posts#search"
   post "/posts/search" => "posts#search", as: :search

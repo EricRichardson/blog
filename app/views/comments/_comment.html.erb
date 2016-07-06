@@ -1,0 +1,9 @@
+<div id="<%= dom_id(com) %>">
+  <%= com.user.full_name + " says:" if com.user %><br>
+  <%= com.body %>
+  <% if (can? :manage, com) || (can? :manage, @post) %>
+    <%= link_to "Edit", edit_post_comment_path( @post, com ) %>
+    <%= link_to "Delete",post_comment_path( @post, com ), remote: true, method: :delete %>
+  <% end %>
+  <hr>
+</div>

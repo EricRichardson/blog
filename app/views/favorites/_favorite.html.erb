@@ -1,0 +1,12 @@
+<div class="favorite-info">
+
+  <% if @post.favorited_by?(current_user) %>
+
+    <%= link_to "Unfavorite", post_favorite_path(@post, @post.favorite_for(current_user)), method: :delete, remote: true %>
+
+  <% else %>
+
+    <%= link_to "Favorite", post_favorites_path(@post), method: :post, remote: true %>
+
+  <% end %>
+</div>

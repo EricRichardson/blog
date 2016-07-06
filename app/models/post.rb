@@ -4,6 +4,9 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :ratings, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :users, through: :favorites
 
   validates :title, presence: true,
                     uniqueness: true
@@ -23,5 +26,13 @@ class Post < ActiveRecord::Base
 
   def body_snippet
     body.truncate(100)
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user: user)
+  end
+
+  def favorite_for(user)
+    favorites.find_by_user_id user
   end
 end

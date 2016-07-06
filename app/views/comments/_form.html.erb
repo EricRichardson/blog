@@ -1,0 +1,5 @@
+<h3>Leave a Comment</h3>
+<%= form_for [@post, @comment], remote: true do |f| %>
+  <%= f.text_area :body %>
+  <%= f.submit "Post Comment" %>
+<% end %>

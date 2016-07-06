@@ -6,27 +6,32 @@
 <div>
   Tags: <%= @post.tags.map { |t| t.title.capitalize }.join(', ') %><br>
 </div>
+
+<div>
+  <h3>Leave a Rating</h3>
+  <%= form_for [@post, @rating] do |f| %>
+    <%= f.text_field :rating %>
+    <%= f.submit "Rate this post" %>
+  <% end %>
+</div>
+<div class="favorite-write">
+  <%= render "/favorites/favorite" %>
+</div>
 <% if can? :manage, @post %>
   <%= link_to "Edit", edit_post_path(@post) %>
   <%= link_to "Delete", post_path(@post), method: :delete,
                                         data: {confirm: "Are you sure you want to delete this post?"} %>
 <% end %>
-<% if user_signed_in? %>
-  <h3>Leave a Comment</h3>
-  <%= form_for [@post, @comment] do |f| %>
-    <%= f.text_area :body %>
-    <%= f.submit "Post Comment" %>
-  <% end %>
-<% end %>
-<h3>Comments</h3>
-<% @comments.each do |com| %>
-<%= com.user.full_name + " says:" if com.user %><br>
-<%= com.body %>
-<% if (can? :manage, com) || (can? :manage, @post) %>
-  <%= link_to "Edit", edit_post_comment_path(@post, com) %>
-  <%= link_to "Delete",post_comment_path(@post,com), method: :delete,
-                                              data: {confirm: "Are you sure you want to delete this comment"} %>
-<% end %>
-  <hr>
 
+<% if user_signed_in? %>
+  <div id="comment-form">
+    <%= render '/comments/form' %>
+  </div>
 <% end %>
+
+<h3>Comments</h3>
+<div id="comments">
+  <% @comments.each do |com| %>
+    <%= render '/comments/comment', post: @post, com: com %>
+  <% end %>
+</div>
