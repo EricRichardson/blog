@@ -1,3 +1,13 @@
+.link:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+.back:hover{
+  cursor: pointer;
+  color: blue;
+}
+
 body {
   padding-bottom: 50px;
 }
