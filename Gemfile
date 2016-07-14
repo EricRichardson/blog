@@ -1,4 +1,9 @@
 source 'https://rubygems.org'
+
+gem 'quiet_assets', group: :development
+gem 'twitter'
+gem 'omniauth-twitter'
+
 gem 'letter_opener'
 gem 'delayed_job_active_record'
 gem 'cancancan'

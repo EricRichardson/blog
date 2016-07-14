@@ -10,6 +10,15 @@ class PostsController < ApplicationController
     @post = Post.new post_params
     @post.user = current_user
     if @post.save
+      if @post.post_on_twitter
+        client = Twitter::REST::Client.new do |config|
+          config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
+          config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
+          config.access_token = current_user.twitter_token
+          config.access_token_secret = current_user.twitter_secret
+        end
+        client.update("Checkout my new post on localhost:3000 #{@post.title}!")
+      end
       redirect_to post_path @post
     else
       render :new
@@ -53,7 +62,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:title, :body, :category_id, {tag_ids: []})
+    params.require(:post).permit(:title, :body, :category_id, {tag_ids: []}, :post_on_twitter)
   end
 
   def find_post

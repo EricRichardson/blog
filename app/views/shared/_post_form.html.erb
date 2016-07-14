@@ -15,5 +15,11 @@
     <%= f.label :category %>
     <%= f.collection_select :category_id, Category.all, :id, :title %>
   </div>
+  <% if current_user.using_twitter? %>
+  <div>
+    <%= f.check_box :post_on_twitter, as: :boolean %>
+    <%= f.label :post_on_twitter %>
+  </div>
+  <% end %>
   <%= f.submit %>
 <% end %>

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root "home#index"
   get "/about" => "home#about"
 
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callbacks#twitter"
+
   resources :posts do
     resources :comments
     resources :favorites, only: [:create, :destroy]

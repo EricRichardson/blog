@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+
+  attr_accessor :post_on_twitter
   belongs_to :category
   belongs_to :user
   has_many :comments, dependent: :destroy
